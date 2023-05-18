@@ -123,6 +123,19 @@ namespace Test.Controllers
             var options = new List<ProcessorOption> {
                 new HeaderOption
                 {
+                    IndexEnd = 6,
+                    Page = 2
+                },
+
+                 new IndexedColumnOption
+                {
+                    DataType = "decimal", //Descuento  
+                    Index = 6,
+                    Page = 2
+                },
+
+                new HeaderOption
+                {
                     IndexEnd = 7,
                     Page = 3
                 },
