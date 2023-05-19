@@ -29,9 +29,9 @@ namespace Test.Controllers
             var stream = file.OpenReadStream();
 
             var fileProcessor = fileProcessorBuilder
-                .SetFile(stream, fileName)
-                .SetFileTypeEnum(fileTypeEnum)
                 .SetConfigurations(GetListOptions(fileTypeEnum))
+                .SetFileTypeEnum(fileTypeEnum)
+                .SetFile(stream, fileName)
                 .Build();
             var isValid = fileProcessor.Validate();
             return Ok(isValid);
