@@ -43,6 +43,7 @@ namespace Test.Controllers
             {
                 FileTypeEnum.PricesListAutoma => GetAutomaOptions(),
                 FileTypeEnum.OfferListGm => GetOfferGmOptions(),
+                FileTypeEnum.PricesListGm => GetGmPriceOptions(),
                 _ => GetAutomaOptions(),
             };
         }
@@ -113,6 +114,80 @@ namespace Test.Controllers
                     DataType = "decimal",
                     Index = 15, //precio con iva
                 },
+            };
+
+            return options;
+        }
+
+        private List<ProcessorOption> GetGmPriceOptions()
+        {
+            var options = new List<ProcessorOption>
+            {
+                new HeaderOption
+                {
+                    IndexEnd = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Articulo
+                    Format = @"^[A-Za-z0-9\s]*$",
+                    IndexStart = 0,
+                    Length = 16
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Descripcion
+                    Format =  @"^[A-Za-z0-9\s]*$",
+                    IndexStart = 17,
+                    Length = 30,
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", //Cant x empaque
+                    IndexStart = 48,
+                    Length = 4
+                },
+                // new IndexedColumnOption
+                //{
+                //    DataType = "string", //Compatibilidad
+                //    Index = 5,
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "string", //Nuevo Código
+                //    Format = "^([A-Z0-9]{12}|-)$",
+                //    Index = 6,
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "decimal", //Lista de Precio
+                //    Index = 7,
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "decimal",
+                //    Index = 8, //dto com
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "decimal",
+                //    Index = 9, //dto fin
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "decimal",
+                //    Index = 10, //costo maipú
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "decimal",
+                //    Index = 14, //precio sin iva
+                //},
+                //new IndexedColumnOption
+                //{
+                //    DataType = "decimal",
+                //    Index = 15, //precio con iva
+                //},
             };
 
             return options;
