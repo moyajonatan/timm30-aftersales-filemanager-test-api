@@ -1,5 +1,4 @@
 ﻿using Microsoft.AspNetCore.Mvc;
-using Microsoft.Extensions.Options;
 using Timm30.AfterSales.FileProcessingService.Lib.Builders.IBuilders;
 using Timm30.AfterSales.FileProcessingService.Lib.Enums;
 using Timm30.AfterSales.FileProcessingService.Lib.Models;
@@ -18,6 +17,7 @@ namespace Test.Controllers
         }
 
         [HttpPost(Name = "Post")]
+        [DisableRequestSizeLimit]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(IFormFile file, FileTypeEnum fileTypeEnum)
@@ -34,7 +34,14 @@ namespace Test.Controllers
                 .SetFile(stream, fileName)
                 .Build();
 
-            var isValid = fileProcessor.Validate();
+            bool isValid = false;
+
+            for (int i = 0; i < 10; i++)
+            {
+                isValid = fileProcessor.Validate();
+                if (!isValid) break;
+            }
+
             return Ok(isValid);
         }
 
@@ -45,6 +52,8 @@ namespace Test.Controllers
                 FileTypeEnum.PricesListAutoma => GetAutomaOptions(),
                 FileTypeEnum.OfferListGm => GetOfferGmOptions(),
                 FileTypeEnum.PricesListGm => GetGmPriceOptions(),
+                FileTypeEnum.PricesListVw => GetVwPriceOptions(),
+                FileTypeEnum.PricesListFord => GetFordPriceOptions(),
                 _ => GetAutomaOptions(),
             };
         }
@@ -120,6 +129,246 @@ namespace Test.Controllers
             return options;
         }
 
+        private List<ProcessorOption> GetVwPriceOptions()
+        {
+            var options = new List<ProcessorOption> {
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Referencia de fabrica
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 0,
+                    Length = 4
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Numero de pieza
+                    Format =  @"^[A-Za-z0-9\s-]+$",
+                    IndexStart = 5,
+                    Length = 20,
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "decimal", //Precio sin IVA
+                    IndexStart = 25,
+                    Length = 11
+                },
+                 new TextFieldColumnOption
+                {
+                    DataType = "string", //Codigo descuento
+                    Format = @"[A-Za-z0-9]*$",
+                    IndexStart = 36,
+                    Length = 4
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", //Unidades por envase
+                    IndexStart = 40,
+                    Length = 7
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Nombre
+                    Format = @"^[A-Za-z0-9\s\.]+$",
+                    IndexStart = 47,
+                    Length = 25
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Unidad de cambio
+                    Format = "^[A-Za-z0-9]*$",
+                    IndexStart = 72,
+                    Length = 3
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", // Fecha de baja
+                    IndexStart = 75,
+                    Length = 7
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Codigo de cambio
+                    Format = "^[A-Za-z0-9]*$",
+                    IndexStart = 82,
+                    Length = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Numero de pieza reemp
+                    Format = "^[A-Za-z0-9-]*$",
+                    IndexStart = 84,
+                    Length = 20
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Nombre pieza reemp
+                    Format = "^[A-Za-z0-9]*$",
+                    IndexStart = 104,
+                    Length = 25
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Numero de lista
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 129,
+                    Length = 2
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Codigo IVA
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 131,
+                    Length = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", // Codigo margen
+                    IndexStart = 132,
+                    Length = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Clasificacion
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 133,
+                    Length = 3
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "decimal", // Porcentaje IVA
+                    IndexStart = 136,
+                    Length = 5
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "decimal", // Precio con IVA
+                    IndexStart = 141,
+                    Length = 11
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Grupo pieza
+                    Format = "[A-Za-z0-9]+",
+                    IndexStart = 152,
+                    Length = 1
+                }
+            };
+            return options;
+        }
+        private List<ProcessorOption> GetFordPriceOptions()
+        {
+            var options = new List<ProcessorOption> {
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Referencia de fabrica
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 0,
+                    Length = 4
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Numero de pieza
+                    Format =  @"^[A-Za-z0-9\s/]+$",
+                    IndexStart = 5,
+                    Length = 20,
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "decimal", //Precio sin IVA
+                    IndexStart = 25,
+                    Length = 11
+                },
+                 new TextFieldColumnOption
+                {
+                    DataType = "string", //Codigo descuento
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 36,
+                    Length = 4
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", //Unidades por envase
+                    IndexStart = 40,
+                    Length = 7
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", //Nombre
+                    Format = @"^.+$",
+                    IndexStart = 47,
+                    Length = 25
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Unidad de cambio
+                    Format = "^[A-Za-z0-9]*$",
+                    IndexStart = 72,
+                    Length = 3
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", // Fecha de baja
+                    IndexStart = 75,
+                    Length = 7
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Codigo de cambio
+                    Format = "^[A-Za-z0-9]*$",
+                    IndexStart = 82,
+                    Length = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Numero de pieza reemp
+                    Format = @"^[A-Za-z0-9/\s]*$",
+                    IndexStart = 84,
+                    Length = 20
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Nombre pieza reemp
+                    Format = @"^.+$",
+                    IndexStart = 104,
+                    Length = 25
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Numero de lista
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 129,
+                    Length = 2
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Codigo IVA
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 131,
+                    Length = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "int", // Codigo margen
+                    IndexStart = 132,
+                    Length = 1
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "string", // Clasificacion
+                    Format = "^[A-Za-z0-9]+$",
+                    IndexStart = 133,
+                    Length = 3
+                },
+                new TextFieldColumnOption
+                {
+                    DataType = "decimal", // Porcentaje IVA
+                    IndexStart = 136,
+                    Length = 5
+                },
+            };
+            return options;
+        }
+
         private List<ProcessorOption> GetGmPriceOptions()
         {
             var options = new List<ProcessorOption>
@@ -169,31 +418,6 @@ namespace Test.Controllers
                     IndexStart = 76,
                     Length = 10
                 },
-                //new IndexedColumnOption
-                //{
-                //    DataType = "decimal",
-                //    Index = 8, //dto com
-                //},
-                //new IndexedColumnOption
-                //{
-                //    DataType = "decimal",
-                //    Index = 9, //dto fin
-                //},
-                //new IndexedColumnOption
-                //{
-                //    DataType = "decimal",
-                //    Index = 10, //costo maipú
-                //},
-                //new IndexedColumnOption
-                //{
-                //    DataType = "decimal",
-                //    Index = 14, //precio sin iva
-                //},
-                //new IndexedColumnOption
-                //{
-                //    DataType = "decimal",
-                //    Index = 15, //precio con iva
-                //},
             };
 
             return options;
