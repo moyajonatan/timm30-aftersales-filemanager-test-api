@@ -567,11 +567,11 @@ namespace Timm30.AfterSale.Test.Api.Factory
         {
             return fileTypeEnum switch
             {
-                FileTypeEnum.PricesListAutoma => GetAutomaOptions(),
-                FileTypeEnum.OfferListGm => GetOfferGmOptions(),
-                FileTypeEnum.PricesListGm => GetGmPriceOptions(),
-                FileTypeEnum.PricesListVw => GetVwPriceOptions(),
-                FileTypeEnum.PricesListFord => GetFordPriceOptions(),
+                FileTypeEnum.PricesList_Automa => GetAutomaOptions(),
+                FileTypeEnum.OfferList_Gm => GetOfferGmOptions(),
+                FileTypeEnum.PricesList_Gm => GetGmPriceOptions(),
+                FileTypeEnum.PricesList_Vw => GetVwPriceOptions(),
+                FileTypeEnum.PricesList_Ford => GetFordPriceOptions(),
                 _ => GetAutomaOptions(),
             };
         }
