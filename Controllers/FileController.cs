@@ -1,4 +1,4 @@
-﻿using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Options;
 using Timm30.AfterSale.Test.Api.Factory;
 using Timm30.AfterSales.FileProcessingService.Lib.Builders.IBuilders;
@@ -19,6 +19,7 @@ namespace Test.Controllers
         }
 
         [HttpPost(Name = "Post")]
+        [DisableRequestSizeLimit]
         [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(IFormFile file, FileTypeEnum fileTypeEnum)
@@ -34,7 +35,15 @@ namespace Test.Controllers
                 .SetFileTypeEnum(fileTypeEnum)
                 .SetConfigurations(OptionsFactory.GetListOptions(fileTypeEnum))
                 .Build();
-            var isValid = fileProcessor.Validate();
+
+            bool isValid = false;
+
+            for (int i = 0; i < 10; i++)
+            {
+                isValid = fileProcessor.Validate();
+                if (!isValid) break;
+            }
+
             return Ok(isValid);
         }
     }
