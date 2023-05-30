@@ -20,7 +20,7 @@ namespace Test.Controllers
 
         [HttpPost(Name = "Post")]
         [DisableRequestSizeLimit]
-        [ProducesResponseType(typeof(bool), StatusCodes.Status200OK)]
+        [ProducesResponseType(typeof(int), StatusCodes.Status200OK)]
         [ProducesResponseType(StatusCodes.Status500InternalServerError)]
         public IActionResult Post(IFormFile file, FileTypeEnum fileTypeEnum)
         {
@@ -36,12 +36,12 @@ namespace Test.Controllers
                 .SetConfigurations(OptionsFactory.GetListOptions(fileTypeEnum))
                 .Build();
 
-            bool isValid = false;
+            int isValid = -1;
 
-            for (int i = 0; i < 500; i++)
+            for (int i = 0; i < 100000; i++)
             {
                 isValid = fileProcessor.Validate();
-                if (!isValid) break;
+                if (isValid != -1) break;
             }
 
             return Ok(isValid);
