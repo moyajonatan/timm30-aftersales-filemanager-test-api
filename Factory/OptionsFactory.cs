@@ -281,7 +281,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Numero de pieza
-                    Format =  @"^[A-Za-z0-9\s-]+$",
+                    Format =  @"^[A-Za-z0-9\s-#/]+$",
                     IndexStart = 5,
                     Length = 20,
                 },
@@ -334,7 +334,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new TextFieldColumnOption
                 {
                     DataType = "string", // Numero de pieza reemp
-                    Format = @"^[A-Za-z0-9-\s]*$",
+                    Format = @"^[\w-/\s]*$",
                     IndexStart = 84,
                     Length = 20
                 },
@@ -368,7 +368,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new TextFieldColumnOption
                 {
                     DataType = "string", // Clasificacion
-                    Format = "^[A-Za-z0-9]+$",
+                    Format = "^[A-Za-z0-9]*$",
                     IndexStart = 133,
                     Length = 3
                 },
@@ -520,7 +520,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Articulo
-                    Format = "^[A-Za-z0-9-]+$",
+                    Format = "^[A-Za-z0-9-/]+$",
                     IndexStart = 0,
                     Length = 16
                 },
@@ -540,7 +540,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                  new TextFieldColumnOption
                 {
                     DataType = "string", //Numero pieza reemplazo
-                    Format = "^[A-Za-z0-9]*$",
+                    Format = "^[A-Za-z0-9-]*$",
                     IndexStart = 53,
                     Length = 16
                 },
