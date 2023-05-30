@@ -36,7 +36,7 @@ namespace Test.Controllers
 
             bool isValid = false;
 
-            for (int i = 0; i < 10; i++)
+            for (int i = 0; i < 100; i++)
             {
                 isValid = fileProcessor.Validate();
                 if (!isValid) break;
@@ -168,7 +168,7 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Nombre
-                    Format = @"^[A-Za-z0-9\s\.]+$",
+                    Format = "^.+$",
                     IndexStart = 47,
                     Length = 25
                 },
@@ -195,7 +195,7 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", // Numero de pieza reemp
-                    Format = "^[A-Za-z0-9-]*$",
+                    Format = @"^[A-Za-z0-9-\s]*$",
                     IndexStart = 84,
                     Length = 20
                 },
@@ -268,7 +268,7 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Numero de pieza
-                    Format =  @"^[A-Za-z0-9\s/]+$",
+                    Format =  @"^[A-Za-z0-9\s/-]+$",
                     IndexStart = 5,
                     Length = 20,
                 },
@@ -281,7 +281,7 @@ namespace Test.Controllers
                  new TextFieldColumnOption
                 {
                     DataType = "string", //Codigo descuento
-                    Format = "^[A-Za-z0-9]+$",
+                    Format = @"[A-Za-z0-9]*$",
                     IndexStart = 36,
                     Length = 4
                 },
@@ -294,7 +294,7 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Nombre
-                    Format = @"^.+$",
+                    Format = "^.+$",
                     IndexStart = 47,
                     Length = 25
                 },
@@ -328,7 +328,7 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", // Nombre pieza reemp
-                    Format = @"^.+$",
+                    Format = "^.*$",
                     IndexStart = 104,
                     Length = 25
                 },
@@ -348,14 +348,15 @@ namespace Test.Controllers
                 },
                 new TextFieldColumnOption
                 {
-                    DataType = "int", // Codigo margen
+                    DataType = "string", // Codigo margen
                     IndexStart = 132,
-                    Length = 1
+                    Length = 1,
+                    Format = "^[0-9A-Z]*$"
                 },
                 new TextFieldColumnOption
                 {
                     DataType = "string", // Clasificacion
-                    Format = "^[A-Za-z0-9]+$",
+                    Format = @"^[A-Za-z0-9\s]+$",
                     IndexStart = 133,
                     Length = 3
                 },
@@ -380,14 +381,14 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Articulo
-                    Format = @"^[A-Za-z0-9]+$",
+                    Format = "^[A-Za-z0-9-]+$",
                     IndexStart = 0,
                     Length = 16
                 },
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Descripcion
-                    Format =  @"^.+$",
+                    Format =  "^.+$",
                     IndexStart = 17,
                     Length = 30,
                 },
@@ -400,7 +401,7 @@ namespace Test.Controllers
                  new TextFieldColumnOption
                 {
                     DataType = "string", //Numero pieza reemplazo
-                    Format = @"^\w*$",
+                    Format = "^[A-Za-z0-9]*$",
                     IndexStart = 53,
                     Length = 16
                 },
@@ -414,7 +415,7 @@ namespace Test.Controllers
                 new TextFieldColumnOption
                 {
                     DataType = "string", //Precio Venta
-                    Format = @"^\d+,\d{2}$",
+                    Format = @"^\d{1,7},\d{2}$",
                     IndexStart = 76,
                     Length = 10
                 },
