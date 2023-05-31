@@ -268,6 +268,112 @@ namespace Timm30.AfterSale.Test.Api.Factory
             return options;
         }
 
+        private static List<ProcessorOption> GetVwOfferOptions()
+        {
+            var options = new List<ProcessorOption>
+            {
+                new HeaderOption
+                {
+                    IndexEnd = 2
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Categoria
+                    Format = @"^[A-Za-z0-9,-/\s]+$",
+                    Index = 2,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Numero de pieza
+                    Format = @"^[A-Za-z0-9\s-]+$",
+                    Index = 3,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Nombre
+                    Format = "^.+$",
+                    Index = 4,
+                },
+                 new IndexedColumnOption
+                {
+                    DataType = "decimal", //Costo de pieza
+                    Index = 5,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "int", //Cantidad 1
+                    Index = 6,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Descuento 1
+                    Format = "^[A-Za-z0-9%]$",
+                    Index = 7,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Precio nivel 1
+                    Index = 8,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "int?", //Cantidad 2
+                    Index = 9,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Descuento 2
+                    Format = "^[A-Za-z0-9%]*$",
+                    Index = 10,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal?", //Precio nivel 2
+                    Index = 11,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "int?", //Cantidad 3
+                    Index = 12,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Descuento 3
+                    Format = "^[A-Za-z0-9%]*$",
+                    Index = 13,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal?", //Precio nivel 3
+                    Index = 14,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "int?", //Cantidad 4
+                    Index = 15,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Descuento 4
+                    Format = "^[A-Za-z0-9%]*$",
+                    Index = 16,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal?", //Precio nivel 4
+                    Index = 17,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Aplicaciones
+                    Format = "^[A-Za-z0-9]$",
+                    Index = 18,
+                },
+            };
+
+            return options;
+        }
+
         private static List<ProcessorOption> GetVwPriceOptions()
         {
             var options = new List<ProcessorOption> {
@@ -394,6 +500,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             };
             return options;
         }
+
         private static List<ProcessorOption> GetFordPriceOptions()
         {
             var options = new List<ProcessorOption> {
