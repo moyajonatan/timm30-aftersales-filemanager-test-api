@@ -38,7 +38,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new IndexedColumnOption
                 {
                     DataType = "string", //Nuevo Código
-                    Format = "^([A-Z0-9]{12}|-)$",
+                    Format = @"^([A-Za-z0-9\s]+|-)$",
                     Index = 6,
                 },
                 new IndexedColumnOption
