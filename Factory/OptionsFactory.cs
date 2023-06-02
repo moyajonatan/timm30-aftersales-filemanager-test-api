@@ -337,12 +337,12 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new IndexedColumnOption
                 {
                     DataType = "decimal?", //Descuento 3
-                    Index = 16,
+                    Index = 15,
                 },
                 new IndexedColumnOption
                 {
                     DataType = "decimal?", //Precio nivel 3
-                    Index = 17,
+                    Index = 16,
                 },
                 new IndexedColumnOption
                 {
