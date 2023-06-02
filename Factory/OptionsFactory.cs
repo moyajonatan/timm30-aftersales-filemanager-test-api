@@ -279,7 +279,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new IndexedColumnOption
                 {
                     DataType = "string", //Categoria
-                    Format = @"^[A-Za-z0-9,-/\s]+$",
+                    Format = "^.+$",
                     Index = 2,
                 },
                 new IndexedColumnOption
@@ -306,8 +306,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "string", //Descuento 1
-                    Format = "^[A-Za-z0-9%]$",
+                    DataType = "decimal", //Descuento 1
                     Index = 7,
                 },
                 new IndexedColumnOption
@@ -318,56 +317,53 @@ namespace Timm30.AfterSale.Test.Api.Factory
                 new IndexedColumnOption
                 {
                     DataType = "int?", //Cantidad 2
-                    Index = 9,
-                },
-                new IndexedColumnOption
-                {
-                    DataType = "string", //Descuento 2
-                    Format = "^[A-Za-z0-9%]*$",
                     Index = 10,
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "decimal?", //Precio nivel 2
+                    DataType = "decimal?", //Descuento 2
                     Index = 11,
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "int?", //Cantidad 3
+                    DataType = "decimal?", //Precio nivel 2
                     Index = 12,
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "string", //Descuento 3
-                    Format = "^[A-Za-z0-9%]*$",
-                    Index = 13,
-                },
-                new IndexedColumnOption
-                {
-                    DataType = "decimal?", //Precio nivel 3
+                    DataType = "int?", //Cantidad 3
                     Index = 14,
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "int?", //Cantidad 4
-                    Index = 15,
-                },
-                new IndexedColumnOption
-                {
-                    DataType = "string", //Descuento 4
-                    Format = "^[A-Za-z0-9%]*$",
+                    DataType = "decimal?", //Descuento 3
                     Index = 16,
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "decimal?", //Precio nivel 4
+                    DataType = "decimal?", //Precio nivel 3
                     Index = 17,
                 },
                 new IndexedColumnOption
                 {
-                    DataType = "string", //Aplicaciones
-                    Format = "^[A-Za-z0-9]$",
+                    DataType = "int?", //Cantidad 4
                     Index = 18,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal?", //Descuento 4
+                    Index = 19,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal?", //Precio nivel 4
+                    Index = 20,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Aplicaciones
+                    Format = "^.*$",
+                    Index = 22,
                 },
             };
 
