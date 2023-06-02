@@ -11,7 +11,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 new HeaderOption
                 {
-                    IndexEnd = 11
+                    Height = 11
                 },
                 new IndexedColumnOption
                 {
@@ -81,7 +81,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             var options = new List<ProcessorOption> {
                 new HeaderOption
                 {
-                    IndexEnd = 6,
+                    Height = 6,
                     Page = 2
                 },
 
@@ -153,7 +153,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
 
                 new HeaderOption
                 {
-                    IndexEnd = 7,
+                    Height = 7,
                     Page = 3
                 },
                 new IndexedColumnOption
@@ -274,7 +274,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 new HeaderOption
                 {
-                    IndexEnd = 2
+                    Height = 2
                 },
                 new IndexedColumnOption
                 {
@@ -369,6 +369,76 @@ namespace Timm30.AfterSale.Test.Api.Factory
                     Format = "^[A-Za-z0-9]$",
                     Index = 18,
                 },
+            };
+
+            return options;
+        }
+
+        private static List<ProcessorOption> GetGmLubricantsOfferOptions()
+        {
+            var options = new List<ProcessorOption>
+            {
+                new HeaderOption
+                {
+                    Height = 11
+                },
+                new FooterOption
+                {
+                    Height = 1
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //PN
+                    Format = @"^[A-Za-z0-9\s]+$",
+                    Index = 2,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Descripcion
+                    Format = "^.+$",
+                    Index = 3,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "string", //Presentacion
+                    Format = "^[A-Za-z0-9]+$",
+                    Index = 4,
+                },
+                 new IndexedColumnOption
+                {
+                    DataType = "int", //Cantidad por envase
+                    Index = 5,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Litros
+                    Index = 6,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Precio venta publico
+                    Index = 7,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Precio lote 1
+                    Index = 8,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Precio lote 2
+                    Index = 9,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Precio lote 3
+                    Index = 10,
+                },
+                new IndexedColumnOption
+                {
+                    DataType = "decimal", //Porcentaje desc lote 3
+                    Index = 11,
+                },                
             };
 
             return options;
@@ -622,7 +692,11 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 new HeaderOption
                 {
-                    IndexEnd = 1
+                    Height = 11
+                },
+                new FooterOption
+                {
+                    Height = 1
                 },
                 new TextFieldColumnOption
                 {
@@ -676,6 +750,8 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 FileTypeEnum.PricesList_Automa => GetAutomaOptions(),
                 FileTypeEnum.OfferList_Gm => GetOfferGmOptions(),
+                FileTypeEnum.OfferList_Vw => GetVwOfferOptions(),
+                FileTypeEnum.OfferList_GmLubricants => GetGmLubricantsOfferOptions(),
                 FileTypeEnum.PricesList_Gm => GetGmPriceOptions(),
                 FileTypeEnum.PricesList_Vw => GetVwPriceOptions(),
                 FileTypeEnum.PricesList_Ford => GetFordPriceOptions(),
