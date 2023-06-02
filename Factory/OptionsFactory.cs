@@ -11,7 +11,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 new HeaderOption
                 {
-                    Height = 11
+                    IndexEnd = 11
                 },
                 new IndexedColumnOption
                 {
@@ -81,7 +81,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             var options = new List<ProcessorOption> {
                 new HeaderOption
                 {
-                    Height = 6,
+                    IndexEnd = 6,
                     Page = 2
                 },
 
@@ -274,7 +274,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 new HeaderOption
                 {
-                    Height = 2
+                    IndexEnd = 2
                 },
                 new IndexedColumnOption
                 {
@@ -376,7 +376,7 @@ namespace Timm30.AfterSale.Test.Api.Factory
             {
                 new HeaderOption
                 {
-                    Height = 11
+                    IndexEnd = 11
                 },
                 new FooterOption
                 {
